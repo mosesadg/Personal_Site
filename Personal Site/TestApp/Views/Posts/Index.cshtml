@@ -1,0 +1,54 @@
+﻿@using TestApp.Models
+@model List<Post>
+
+<h2>Post Index</h2>
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach (var post in Model)
+{
+    <div>
+        @post.Title<br />
+        @Html.Raw(post.Body)<br />
+        @post.Created.DateTime.ToLongDateString()
+
+    </div>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+
+                <h1 class="page-header">
+                   @post.Title
+                    <small>Secondary Text</small>
+                </h1>
+
+                <!-- First Blog Post -->
+                <h2>
+                    <a href="#">Blog Post Title</a>
+                </h2>
+                <p class="lead">
+                    by <a href="index.php">Anand Moses</a>
+                </p>
+                <p><span class="glyphicon glyphicon-time"></span>@post.Created.DateTime.ToLongDateString()</p>
+                <hr>
+                <img class="img-responsive" src="" http />/www.coderfoundry.com/img/CFImages/CoderFoundryLogoWhitesm.png"" alt="">
+                <hr>
+                <p>@Html.Raw(post.Body)</p>
+                <a class="btn btn-primary" href= "@Url.Action("Details", new {Slug=post.Slug})">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+                <hr>
+
+            </div>
+        </div>
+    </div>
+
+}
