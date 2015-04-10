@@ -54,15 +54,15 @@ namespace TestApp
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "677806418992227",
+               appSecret: "aeb7b77eb55dc187bb4bd28228bee223");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "593086492469-150vu4v9oqavdg0t06176tlb7b3gsqv6.apps.googleusercontent.com",
+                ClientSecret = "0BvWU3hHqlr0weNPtLCbbdDw"
+            });
         }
     }
 }

@@ -100,7 +100,7 @@ namespace TestApp.Controllers
             return View(post);
         }
 
-        // GET: Posts/Edit/5
+       // GET: Posts/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -114,7 +114,7 @@ namespace TestApp.Controllers
             }
             return View(post);
         }
-
+        
 
         // POST: Posts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -131,7 +131,6 @@ namespace TestApp.Controllers
                 post.Updated = System.DateTimeOffset.Now;
 
                 db.Entry(post).Property(p => p.Body).IsModified = true;
-                db.Entry(post).Property("Published").IsModified = true;
                 db.Entry(post).Property(p => p.Title).IsModified = true;
                 db.Entry(post).Property(p => p.Updated).IsModified = true;
 

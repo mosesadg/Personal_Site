@@ -1,53 +1,71 @@
 ﻿@model TestApp.Models.Post
 
 @{
-                ViewBag.Title = "Details";
-                //Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Details";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.ActionLink("Edit", "Edit", new { id=Model.Id }) 
-@Html.ActionLink("Back to List", "Index") 
+@Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+@Html.ActionLink("Back to List", "Index")
 
 
-<h3>@Html.DisplayFor(m=>m.Title)</h3>
+<!--<h3>@Html.DisplayFor(m => m.Title)</h3>
 <h3>@Html.DisplayFor(m => m.Body)</h3>
 <h3>@Html.DisplayFor(m => m.Comments)</h3>
-<h3>@Html.DisplayFor(m => m.Created)</h3>
 
-@foreach (var comment in Model.Comments)
-{
+<h3>@Html.DisplayFor(m => m.Created)</h3>-->
 
-    <div class="well">
-        <h4>Leave a Comment:</h4>
-        <form role="form">
-            <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
+
+
+ <div class="joobstrap_section sourrounding_wrapper" id="main_top">
+    <!--<div class="inner_wrapper">-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="module-title"> </h3>
+                    <!--p class="lead text-center">Enter Text</p>-->
+                    <hr /><!-- Page Content -->
+                    <div class="container">
+
+                        <div class="row">
+
+                            <!-- Blog Entries Column -->
+                            <div class="col-md-8">
+
+                                <h1 class="page-header">
+                                    <h5>@Html.DisplayFor(m => m.Title)</h5>
+                                    <!--<small>Secondary Text</small>-->
+                                </h1>
+
+                                <!-- First Blog Post -->
+                                <!--<h2>
+                    <a href="#">Blog Post Title</a>
+                </h2>-->
+                                <p class="lead">
+                                    by <a href="index.php">Anand Moses</a>
+                                </p>
+                                <p><span class="glyphicon glyphicon-time"></span> @Html.DisplayFor(m => m.Created)</p>
+                                <hr>
+                                <img class="img-responsive" src="data:image/png;base64,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" " alt=" ">
+                                <hr>  
+                                     
+                                     
+                              
+                                <p>@Html.DisplayFor(m => m.Body)</p>
+                                <!--<a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>-->
+                          
+                            <hr>
+
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-
-    <hr>
-
-                <!-- Posted Comments -->
-
-                <!-- Comment -->
-    <div class="media">
-        <a class="pull-left" href="#">
-            <img class="media-object" src="http://placehold.it/64x64" alt="">
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">
-                Start Bootstrap
-                <small>August 25, 2014 at 9:30 PM</small>
-            </h4>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
         </div>
-    </div>
+    <!---</div>-->
+</div>
 
-}
+            @foreach (var comment in Model.Comments)
+            {
 
-<td>
-
-
-        </td>
+            }
