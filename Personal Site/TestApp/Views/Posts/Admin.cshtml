@@ -7,7 +7,7 @@
 
 <div class="joobstrap_section sourrounding_wrapper" id="main_top">
     <div class="inner_wrapper">
-        <h3> Admin Page</h3>
+        <h3> Admin </h3>
 
         <p>
             @Html.ActionLink("Create New", "Create")
@@ -25,20 +25,20 @@
                 </th>
                 
                
-                    <th>
+                   <!-- <th>
                         
 
                             @Html.DisplayNameFor(model => model.Body)
                        
 
-</th>
+</th>-->
                 
                     <th>
                         @Html.DisplayNameFor(model => model.MediaURL)
                     </th>
-                    <th>
+                    <!--<th>
                         @Html.DisplayNameFor(model => model.Slug)
-                    </th>
+                    </th>-->
                     <th></th>
 </tr>
 
@@ -55,18 +55,18 @@
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     
-                        <td>
+                       <!-- <td>
                             <div class="excerpt">
                                 @Html.DisplayFor(modelItem => item.Body)
                             </div>
-</td>
+</td>-->
                     
                 <td>
                     @Html.DisplayFor(modelItem => item.MediaURL)
                 </td>
-                <td>
+               <!-- <td>
                     @Html.DisplayFor(modelItem => item.Slug)
-                </td>
+                </td>-->
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "Details", new { Slug = item.Slug }) |

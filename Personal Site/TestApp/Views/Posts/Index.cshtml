@@ -1,16 +1,21 @@
-﻿@using TestApp.Models
-@model List<Post>
+﻿@using PagedList
+@using PagedList.Mvc
+@using TestApp.Models
 
+
+
+@model PagedList<Post>
 
 @{
     ViewBag.Title = "Index";
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 @foreach (var post in Model)
 {
-    //<div>
+
+    
+   //<div>
       //  @post.Title<br />
        // @Html.Raw(post.Body)<br />
         //@post.Created.DateTime.ToLongDateString()
@@ -59,25 +64,32 @@
                                     </div>
                                         <!--<a class="btn btn-primary" href="@Url.Action("Details", new {Slug=post.Slug})">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>-->
                                    
+
                                    <!-- <hr color ="purple" width="70%">-->
+
+                                  
+
+                                  
 </div>
                             </div>
                         </div>
                     </div>
+                   
                 </div>
             </div>
+        
         <!--</div>-->
     </div>
+   
+}    
+    
 
-}
-<style type="text/css">
-    div.excerpt {
-        height: 2.2em;
-        overflow: hidden;
-    }
+@*@Html.PagedListPager(Model, page => Url.Action("Index", new { page, ViewBag.Query }))*@
 
-        div.excerpt:hover {
-            background-color: lightgrey; 
-           height: auto;
-        }
-</style>
+  Page@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+
+
+
+ 

@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TestApp.Models;
+using PagedList;
+using PagedList.Mvc;
+
 
 namespace TestApp.Controllers
 {
@@ -17,12 +20,22 @@ namespace TestApp.Controllers
 
         // GET: Posts
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             //return View(db.Posts.OrderByDescending(p => p.Created).Take(3).ToList());
-           
-            var model = db.Posts.ToList();
-            return View(model);
+            //int pageSize = 3;
+            //int pageNumber = (page ?? 1);
+            //return View(post.ToPagedList(pageNumber, pageSize));
+
+            
+
+
+            //var model = db.Posts.ToPagedList();
+            return View(db.Posts.OrderByDescending(p => p.Created).ToPagedList(page ?? 1, 3));
+
+
+
+
         }
 
         public ActionResult Admin()
