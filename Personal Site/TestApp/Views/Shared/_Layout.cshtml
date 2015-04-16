@@ -41,30 +41,33 @@
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div style="height: 1px;" class="main_nav navbar-collapse navbar-ex1-collapse collapse">
                                     <ul class="navigation menu">
-                                        <li><a href="/#to_the_top">Home</a></li>
-                                        <li><a href="/#top_center">My Skills</a></li>
-                                        <li><a href="/#main_top">About Me</a></li>
-                                        <li><a href="/#main_center">Portfolio</a></li>
-                                        
-                                        <li><a href="/#main_bottom">Resume</a></li>
+                                        <div class="navmove">
+                                            <li><a href="/#to_the_top">Home</a></li>
+                                            <li><a href="/#top_center">My Skills</a></li>
+                                            <li><a href="/#main_top">About Me</a></li>
+                                            <li><a href="/#main_center">Portfolio</a></li>
 
-                                        <li>@Html.ActionLink("Blog", "Index", "Posts")</li>
-                                        
-                                        <li>@Html.ActionLink("Blog Login", "Login", "Account")</li>
+                                            <li><a href="/#main_bottom">Resume</a></li>
+
+                                            <li>@Html.ActionLink("Blog", "Index", "Posts")</li>
+
+                                            <li>@Html.ActionLink("Blog Login", "Login", "Account")</li>
 
 
-                                        @if(User.IsInRole("Admin"))
-                                        {
-                                            
-                                            <li>
-                                                @Html.ActionLink("Admin", "Admin", "Posts")
-                                            </li>
-                                        }
-                                            
-                                        <!--<li><a href="">Blog</a></li> <!--NEED TO ENTER NEW PAGE FOR BLOG POST-->
+                                            @if (User.IsInRole("Admin"))
+                                            {
 
-                                        
-                                       <li><a href="/#footer_center">Contact</a></li>
+                                                <li>
+                                                    @Html.ActionLink("Admin", "Admin", "Posts")
+                                                </li>
+                                            }
+
+                                            <!--<li><a href="">Blog</a></li> <!--NEED TO ENTER NEW PAGE FOR BLOG POST-->
+
+
+                                            <li><a href="/#footer_center">Contact</a></li>
+
+                                        </div>
                                         <!-- <li><a href="subpage.html">Subpage <i class="icon-external-link"></i></a></li>-->
                                     </ul>
                                 </div><!-- /.navbar-collapse -->
@@ -142,5 +145,18 @@
     <!-- Smooth scrolling script -->
     <script type="text/javascript" src="/js/smoothscroll.min.js"></script>
     <!-- **************************************** Template Body ends **************************************** -->
+
+
+
+    <style type="text/css">
+        
+
+            div.navmove:hover {
+                
+                font-family: 'Comic Sans MS';
+                
+            }
+    </style>
+
 </body>
 </html>

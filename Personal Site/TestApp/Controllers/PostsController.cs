@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using TestApp.Models;
 using PagedList;
 using PagedList.Mvc;
+using Microsoft.AspNet.Identity;
 
 
 namespace TestApp.Controllers
@@ -26,15 +27,8 @@ namespace TestApp.Controllers
             //int pageSize = 3;
             //int pageNumber = (page ?? 1);
             //return View(post.ToPagedList(pageNumber, pageSize));
-
-            
-
-
             //var model = db.Posts.ToPagedList();
             return View(db.Posts.OrderByDescending(p => p.Created).ToPagedList(page ?? 1, 3));
-
-
-
 
         }
 
@@ -184,6 +178,24 @@ namespace TestApp.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateComment([Bind(Include = "PostID, Body")] Comment comment, string slug)
+        {
+            if (ModelState.IsValid)
+            {
+
+                comment.AuthorID = User.Identity.GetUserId();
+                comment.Created = System.DateTimeOffset.Now;
+
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                return RedirectToAction("Details", new { slug = slug });
+                
+            }
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -192,5 +204,39 @@ namespace TestApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // GET: Posts/Delete/5
+        public ActionResult DeleteComment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
+            {
+                return HttpNotFound();
+            }
+            return View(comment);
+        }
+        //Post delete
+        [HttpPost, ActionName("DeleteComment")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteComment(int id, string slug)
+        {
+
+            Comment comment = db.Comments.Find(id);
+            db.Comments.Remove(comment);
+            db.SaveChanges();
+            return RedirectToAction("Details", new { slug = slug });
+            
+        }
+
+    
     }
+
+
+    
+
+
 }
