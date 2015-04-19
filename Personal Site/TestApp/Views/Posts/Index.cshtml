@@ -11,6 +11,17 @@
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+
+
 @foreach (var post in Model)
 {
     //if(post.Title == "Test Blog 4")
@@ -114,6 +125,12 @@ Page@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageC
 <style type="text/css">
     div.test1:hover {
         background-color: red;
+        font-family: 'Comic Sans MS';
+    }
+</style>
+
+<style type="text/css">
+    div.searchform:hover {
         font-family: 'Comic Sans MS';
     }
 </style>

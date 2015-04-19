@@ -87,21 +87,34 @@
 
                 <br />
 
-                <div>
-                    <form method="post" action="@Url.Action("DeleteComment",new { id = comment.ID, slug = Model.Slug })">
-                        @Html.AntiForgeryToken()
 
-                        @*@Html.ActionLink("", "DeleteComment", Post new { id = Model.Id })*@
+        //if (User.IsInRole("Moderator"))
+        //{
+        //<div>
+        //   <form method="post" action="@Url.Action("DeleteComment",new { id = comment.ID, slug = Model.Slug })">
+        //     @Html.AntiForgeryToken()
+        //
+        //   @*@Html.ActionLink("", "DeleteComment", Post new { id = Model.Id })*@
 
-                        @*@@Html.ActionLink("Edit Record", "Edit", new {Id=3})*@
+        // @*@@Html.ActionLink("Edit Record", "Edit", new {Id=3})*@
 
-                        
-                        <input type="submit" style="border: 4pt double" value="Delete Comment" class="btn btn-default" />
-                                                                   
-                      </form>
-                </div>
-            
-    
+
+        //<input type="submit" style="border: 4pt double" value="Delete Comment" class="btn btn-default" />
+
+        //</form>
+        //</div>
+        //}
+
+        //if (User.IsInRole("Moderator"))
+        //{ 
+        
+        <td>
+            @Html.ActionLink("DeleteComment", "DeleteComment", new { id = comment.ID, slug=Model.Slug })
+        
+        
+            @Html.ActionLink("EditComment", "EditComment", new { id = comment.ID, slug=Model.Slug })
+        </td>
+   
     }
                                
                         </div>
