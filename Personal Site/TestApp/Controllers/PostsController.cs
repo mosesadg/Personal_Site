@@ -14,13 +14,13 @@ using Microsoft.AspNet.Identity;
 
 namespace TestApp.Controllers
 {
-    [Authorize(Roles="Admin")]
+    
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Posts
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public ActionResult Index(int? page, string searchString)
         {
             //return View(db.Posts.OrderByDescending(p => p.Created).Take(3).ToList());
@@ -46,7 +46,7 @@ namespace TestApp.Controllers
                         
 
         }
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Admin()
         {
             return View(db.Posts.ToList());
@@ -90,13 +90,13 @@ namespace TestApp.Controllers
 
 
 
-
+        [Authorize(Roles = "Admin")]
         // GET: Posts/Create
         public ActionResult Create()
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Created,Body,Title,Published")] Post post, HttpPostedFileBase image)
@@ -127,6 +127,7 @@ namespace TestApp.Controllers
             return View(post);
         }
 
+        [Authorize(Roles = "Admin")]
        // GET: Posts/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -141,8 +142,8 @@ namespace TestApp.Controllers
             }
             return View(post);
         }
-        
 
+        [Authorize(Roles = "Admin")]
         // POST: Posts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -171,7 +172,7 @@ namespace TestApp.Controllers
             }
             return View(post);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Posts/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -186,7 +187,7 @@ namespace TestApp.Controllers
             }
             return View(post);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -197,7 +198,7 @@ namespace TestApp.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateComment([Bind(Include = "PostID, Body")] Comment comment, string slug)
@@ -224,7 +225,8 @@ namespace TestApp.Controllers
             }
             base.Dispose(disposing);
         }
-
+        
+      [Authorize(Roles = "Admin, Moderator")]
         // GET: Posts/Delete/5
         public ActionResult DeleteComment(int? id)
         {
@@ -239,7 +241,9 @@ namespace TestApp.Controllers
             }
             return View(comment);
         }
+        
         //Post delete
+        [Authorize(Roles = "Admin, Moderator")]
         [HttpPost, ActionName("DeleteComment")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteComment(int id, string slug)
@@ -255,6 +259,7 @@ namespace TestApp.Controllers
 
 
         // GET: Posts/Edit/5
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult EditComment(int? id)
         {
             if (id == null)
@@ -270,6 +275,7 @@ namespace TestApp.Controllers
         }
 
 
+        [Authorize(Roles = "Admin, Moderator")]
         // POST: Posts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
